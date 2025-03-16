@@ -1,0 +1,33 @@
+function btn_quantity() {
+    const quantity_SHOW = document.getElementById("btn_Quantity");
+
+    if (!quantity_SHOW) return; // Prevent error if element is missing
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    // Calculate total quantity of items in the cart
+    let totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    // Update the button text with quantity
+    quantity_SHOW.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Cart ${totalQuantity > 0 ? `(${totalQuantity})` : ''}`;
+}
+
+// Ensure cart quantity updates when adding an item
+function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existingItem = cart.find(item => item.image === image);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name, price, quantity: 1, image });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Item added to cart!");
+
+    btn_quantity(); // Update cart quantity in the button
+}
+
+// Call `btn_quantity()` when the page loads to show the correct cart count
+document.addEventListener("DOMContentLoaded", btn_quantity);
