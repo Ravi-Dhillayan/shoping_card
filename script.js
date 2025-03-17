@@ -17,9 +17,9 @@ const products = [
   { name: "Printed Casual T-Shirt", price: 599, image: "gallery/tshirt3.jpeg" },
   { name: "Round Neck Blue T-Shirt", price: 549, image: "gallery/tshirt4.jpeg" },
   { name: "Striped Cotton T-Shirt", price: 699, image: "gallery/tshirt5.jpeg" },
-  { name: "Graphic Oversized T-Shirt", price: 799, image: "gallery/tshirt6.jpeg" },
+  { name: "Graphic Oversized T-Shirt", price: 799, image: "gallery/tshirt6.webp" },
   { name: "Slim Fit Polo T-Shirt", price: 999, image: "gallery/tshirt7.jpg" },
-  { name: "Half-Sleeve Sports T-Shirt", price: 649, image: "gallery\tshirt8.jpeg" },
+  { name: "Half-Sleeve Sports T-Shirt", price: 649, image: "gallery/tshirt8.jpeg" },
   { name: "Grey Round Neck T-Shirt", price: 459, image: "gallery/tshirt9.jpeg" },
   { name: "Premium Black T-Shirt", price: 1099, image: "gallery/tshirt10.jpg" },
 
@@ -29,9 +29,9 @@ const products = [
   { name: "Khaki Chinos", price: 1599, image: "gallery/pant3.jpg" },
   { name: "Cargo Pants Green", price: 1999, image: "gallery/pant4.jpg" },
   { name: "Grey Joggers", price: 1299, image: "gallery/pant5.jpg" },
-  { name: "Formal Black Pants", price: 1899, image: "gallery/pant6.jpeg" },
+  { name: "Formal Black Pants", price: 1899, image: "gallery/pant6.jpg" },
   { name: "Casual Beige Pants", price: 1699, image: "gallery/pant7.jpg" },
-  { name: "Regular Fit Jeans", price: 1499, image: "gallery\shoe8.webp" },
+  { name: "Regular Fit Jeans", price: 1499, image: "gallery/pant8.jpg" },
   { name: "Classic Blue Denim", price: 1999, image: "gallery/pant9.jpg" },
   { name: "Stretchable Black Pants", price: 1799, image: "gallery/pant10.jpg" },
 
@@ -40,10 +40,10 @@ const products = [
   { name: "Adidas Sports Shoes", price: 4499, image: "gallery/shoe2.jpg" },
   { name: "Puma White Sneakers", price: 3799, image: "gallery/shoe3.jpg" },
   { name: "Reebok Training Shoes", price: 2999, image: "gallery/shoe4.jpg" },
-  { name: "Woodland Brown Boots", price: 5999, image: "gallery/shoe5.jpg" },
+  { name: "Woodland Brown Boots", price: 5999, image: "gallery/shoe5.jpeg" },
   { name: "Campus Casual Shoes", price: 2499, image: "gallery/shoe6.jpg" },
   { name: "Fila High Ankle Shoes", price: 3399, image: "gallery/shoe7.jpg" },
-  { name: "Bata Formal Shoes", price: 2899, image: "gallery/shoe8.jpg" },
+  { name: "Bata Formal Shoes", price: 2899, image: "gallery/shoe8.webp" },
   { name: "Red Tape Leather Shoes", price: 5499, image: "gallery/shoe9.jpg" },
   { name: "Skechers Walking Shoes", price: 4299, image: "gallery/shoe10.jpg" }
 ];
@@ -65,6 +65,39 @@ function loadProducts() {
       cart.appendChild(Div);
   });
 }
+function checkLoginStatus() {
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  
+  if (users.length > 0) {
+      document.getElementById("logout").style.display = "block"; 
+  } else {
+      document.getElementsByClassName("logout").style.display = "none"; 
+  }
+}
+
+function checkLoginStatus() {
+  const isLoggedIn = sessionStorage.getItem("user") === "true";
+  const logoutButton = document.querySelector(".logout");
+
+  if (isLoggedIn) {
+      logoutButton.style.display = "block";
+  } else {
+      logoutButton.style.display = "none";
+  }
+}
+
+// Function to log out the user
+function Logout() {
+  sessionStorage.removeItem("user");
+  alert("You have been logged out.");
+  checkLoginStatus(); // Update UI
+}
+
+// Run check on page load
+document.addEventListener("DOMContentLoaded", checkLoginStatus);
+
+
+document.addEventListener("DOMContentLoaded", checkLoginStatus);
 
 function addToCart(name, price, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];

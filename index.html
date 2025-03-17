@@ -21,6 +21,7 @@
                 <a class="home" href="#">Fashion</a>
                 <a class="home" href="#">CONTACT</a>
                 <button onclick="viewCart()" id="btn_quantity"><i class="fa-solid fa-cart-shopping"></i> Cart</button>
+                <button onclick="Logout()" class="logout">Logout</button>
             </div>
         </div>
     </header>
@@ -29,7 +30,12 @@
         <div class="row" id="product-list">
         </div>
     </section>
-
+ <script>
+        function toggleMenu() {
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
+}
+ </script>
     <script src="script.js">
         
     </script>
