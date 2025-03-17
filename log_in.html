@@ -81,6 +81,7 @@
          <input type="password" id="password" placeholder="Enter Your Password">
        </div>
        <button type="button" class="login" onclick="loginUser()">Login</button>
+       <button type="button" class="Caccount" onclick="Caccount()">Create a new account</button>
     </form>
   </section>
 
@@ -106,6 +107,9 @@
       } else {
         alert("Incorrect Name or Password!");
       }
+    }
+    function Caccount(){
+      window.location.href="submit_pag.html";
     }
   </script>
 
